@@ -3,11 +3,17 @@ package main
 import (
 	"fmt"
 
-	"github.com/j-monteiro/url-shortener/services"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	s := services.ShortenUrlService{}
-	link := s.CreateShortenedLink("https://www.google.com")
-	fmt.Println(link)
+	loadEnvConfig()
+}
+
+func loadEnvConfig() {
+	err := godotenv.Load()
+
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 }
